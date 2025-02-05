@@ -34,6 +34,7 @@ public class TicTacToe
 
     private Square[][] board;
     private boolean isGameOver;
+    private TicTacToeViewer front;
 
     /**
      * Constructor which initialized the board with BLANKs.
@@ -43,10 +44,11 @@ public class TicTacToe
      */
     public TicTacToe() {
         // Initialize Squares in the board
+        front = new TicTacToeViewer(this);
         this.board = new Square[3][3];
         for(int row = 0; row < this.board.length; row++) {
             for(int col = 0; col< this.board[row].length; col++) {
-                this.board[row][col] = new Square(row, col);
+                this.board[row][col] = new Square(row, col, front);
             }
         }
 
@@ -280,6 +282,7 @@ public class TicTacToe
             row++;
             System.out.println();
         }
+        front.repaint();
     }
 
     public static void main(String[] args) {
