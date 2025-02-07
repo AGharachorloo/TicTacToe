@@ -43,7 +43,7 @@ public class TicTacToe
      * The view is initialized with this TicTacToe object
      */
     public TicTacToe() {
-        // Initialize Squares in the board
+        // Initialize Squares in the board & reference to the frontend
         front = new TicTacToeViewer(this);
         this.board = new Square[3][3];
         for(int row = 0; row < this.board.length; row++) {
@@ -282,6 +282,7 @@ public class TicTacToe
             row++;
             System.out.println();
         }
+        // Repaint the window when board is printed
         front.repaint();
     }
 

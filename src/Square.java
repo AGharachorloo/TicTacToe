@@ -20,6 +20,9 @@ public class Square {
     private int row, col;
     private boolean isWinningSquare;
     private TicTacToeViewer front;
+    private static final int BOX_SIDE_LENGTH = 100;
+    private static final int FIRST_X = 100;
+    private static final int FIRST_Y = 100;
 
     /**
      * Constructor to initialize one Square of the
@@ -28,14 +31,16 @@ public class Square {
      * @param col the column the square is in
      */
     public Square(int row, int col, TicTacToeViewer front) {
+        // Initialize the reference to the frontend
         this.front = front;
         this.row = row;
         this.col = col;
 
         this.marker = TicTacToe.BLANK;
         this.isWinningSquare = false;
-        imageX = new ImageIcon("Resources/fish1.png").getImage();
-        imageO = new ImageIcon("Resources/fish2.png").getImage();
+        // Initialize the images
+        imageX = new ImageIcon("Resources/X.png").getImage();
+        imageO = new ImageIcon("Resources/O.png").getImage();
     }
 
     /******************** Getters and Setters ********************/
@@ -67,6 +72,12 @@ public class Square {
     }
 
     public void draw(Graphics g) {
+        // If the square being drawn is one of the winning squares fill the box green
+        if (this.isWinningSquare){
+            g.setColor(Color.GREEN);
+            g.fillRect(col * BOX_SIDE_LENGTH + FIRST_X, row * BOX_SIDE_LENGTH + FIRST_Y, 100, 100);
+        }
+        // Draw the image that corresponds to the marker of the square (X or O)
         if (marker.equals("X")) {
             g.drawImage(imageX,(col+1)*100, (row+1)*100, 100, 100, front);
         }
